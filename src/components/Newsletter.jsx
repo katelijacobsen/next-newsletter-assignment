@@ -1,6 +1,22 @@
+import { addSub } from "@/lib/api";
+
 function Newsletter() {
+  async function actionSubmit(formData) {
+    "use server";
+    const data = {
+      email: formData.get("email"),
+      name: formData.get("name"),
+    };
+    const res = await addSub(data);
+
+    console.log(res[0].id);
+  }
+
   return (
-    <form className="max-w-md mx-auto p-4 bg-white shadow-md rounded">
+    <form
+      action={actionSubmit}
+      className="max-w-md mx-auto p-4 bg-white shadow-md rounded"
+    >
       <div className="mb-4">
         <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
           Name

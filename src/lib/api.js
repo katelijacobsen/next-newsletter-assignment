@@ -2,12 +2,24 @@ const endpoint = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 async function apiFetch(url, options = {}) {
-  return fetch(url, options).then((res) => res.json());
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    return response.ok;
+  }
+  return await response.json();
 }
 
 export async function getSubs() {
-  return apiFetch(endpoint, {
-    // method: 'GET',
+  return apiFetch(`${endpoint}?order=id.desc`, {
+    method: "GET",
+    headers: {
+      apikey: supabaseKey,
+    },
+  });
+}
+
+export async function getSubById(id) {
+  return apiFetch(`${endpoint}?id=eq.${id}`, {
     headers: {
       apikey: supabaseKey,
     },

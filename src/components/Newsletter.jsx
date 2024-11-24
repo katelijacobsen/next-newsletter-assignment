@@ -8,8 +8,9 @@ function Newsletter() {
       name: formData.get("name"),
     };
     const res = await addSub(data);
-
-    console.log(res[0].id);
+    if (res) {
+      console.log(res[0].id);
+    }
   }
 
   return (

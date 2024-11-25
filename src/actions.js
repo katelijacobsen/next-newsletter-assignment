@@ -17,12 +17,12 @@ export async function actionSubmit(prev, formData) {
     errors.email = "Email is required";
   }
 
-  if (errors.email.length > 0 && errors.name.length > 0) {
+  // if (errors.email.length > 0 || errors.name.length > 0) {
+  //   return { success: false, errors };
+  // }
+  if (Object.keys(errors).length > 0) {
     return { success: false, errors };
   }
-  // if (Object.keys(errors).length > 0) {
-  //   return { errors };
-  // }
 
   const res = await addSub(data);
 

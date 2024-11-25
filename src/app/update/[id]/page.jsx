@@ -12,15 +12,19 @@ async function page({ params }) {
       email: formData.get("email"),
       name: formData.get("name"),
     };
+
     const res = await updateSub(id, data);
 
     if (!res) {
       return;
     }
 
-    revalidatePath("/");
-
-    redirect("/");
+    if (data.email === email && data.name === name) {
+      redirect("/");
+    } else {
+      revalidatePath("/");
+      redirect(`/?updated=${res[0].id}`);
+    }
   }
 
   async function deleteAction() {

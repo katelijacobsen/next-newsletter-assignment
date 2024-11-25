@@ -1,15 +1,16 @@
 import { getSubs } from "@/lib/api";
 import Link from "next/link";
 
-async function SubList() {
+async function SubList({ updated }) {
   const subs = await getSubs();
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      <ul className="space-y-4">
+    <div className="p-4 bg-gray-100">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
         {subs.map((sub) => (
           <li
+            data-updated={sub.id.toString() === updated}
             key={sub.id}
-            className="bg-white shadow rounded-lg overflow-hidden"
+            className="bg-white shadow rounded-lg overflow-hidden data-[updated='true']:outline-green-600 data-[updated='true']:outline"
           >
             <Link
               href={`/update/${sub.id}`}

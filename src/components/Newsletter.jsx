@@ -1,4 +1,5 @@
 import { addSub } from "@/lib/api";
+import { revalidatePath } from "next/cache";
 
 function Newsletter() {
   async function actionSubmit(formData) {
@@ -10,6 +11,7 @@ function Newsletter() {
     const res = await addSub(data);
     if (res) {
       console.log(res[0].id);
+      revalidatePath("/");
     }
   }
 

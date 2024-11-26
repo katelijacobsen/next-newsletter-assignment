@@ -13,6 +13,7 @@ async function SubList({ updated }) {
             className="bg-white shadow rounded-lg overflow-hidden data-[updated='true']:outline-green-600 data-[updated='true']:outline"
           >
             <Link
+              prefetch
               href={`/update/${sub.id}`}
               className="block p-4 hover:bg-gray-50 transition-colors duration-300"
             >

@@ -20,6 +20,7 @@ function Newsletter() {
           type="text"
           id="name"
           name="name"
+          defaultValue={state?.name}
           className="w-full px-3 py-2 border border-gray-300 rounded"
         />
         <p className="bg-red-100 text-red-950">
@@ -34,6 +35,7 @@ function Newsletter() {
           type="email"
           id="email"
           name="email"
+          defaultValue={state?.email}
           className="w-full px-3 py-2 border border-gray-300 rounded"
         />
         <p className="bg-red-100 text-red-950">

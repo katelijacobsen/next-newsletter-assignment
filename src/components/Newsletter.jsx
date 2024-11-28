@@ -5,7 +5,7 @@ import { actionSubmit } from "@/actions";
 import SubmitButton from "./SubmitButton";
 
 function Newsletter() {
-  const [state, formAction] = useActionState(actionSubmit, undefined);
+  const [state, formAction] = useActionState(actionSubmit);
 
   return (
     <form
@@ -43,6 +43,7 @@ function Newsletter() {
         </p>
       </div>
       <SubmitButton />
+      <p>{state?.success && state.success.message}</p>
       {state?.errors && state.errors.submit && (
         <p className="text-red-500 text-sm mt-2">{state.errors.submit}</p>
       )}

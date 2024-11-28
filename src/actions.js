@@ -22,9 +22,6 @@ export async function actionSubmit(prev, formData) {
     errors.email = "Email is required";
   }
 
-  // if (Object.keys(errors).length > 0) {
-  //   return { success: false, errors, name: data.name, email: data.email };
-  // }
   if (errors.name || errors.email) {
     return { success: false, errors, name: data.name, email: data.email };
   }

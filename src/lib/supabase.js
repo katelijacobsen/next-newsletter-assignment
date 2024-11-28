@@ -38,3 +38,13 @@ export async function postSub(subdata) {
   const data = await response.json();
   return data;
 }
+
+export async function delSub(id) {
+  const response = await fetch(`${url}?id=eq.${id}`, {
+    method: "DELETE",
+    headers: headersList,
+  });
+
+  const data = await response.json();
+  return data;
+}

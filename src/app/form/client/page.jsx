@@ -1,6 +1,5 @@
 "use client";
 
-import { action } from "@/actions";
 import { useState } from "react";
 
 function page() {

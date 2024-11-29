@@ -1,21 +1,16 @@
-import { postSub } from "@/lib/supabase";
-import { revalidatePath } from "next/cache";
+"use client";
 
-async function Newsletter() {
-  async function sendData(formData) {
-    "use server";
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-    };
-    await postSub(data);
+import { useActionState } from "react";
+import { actionSubmit } from "@/actions";
+import SubmitButton from "./SubmitButton";
 
-    revalidatePath("/");
-  }
+function Newsletter() {
+  const [state, formAction] = useActionState(actionSubmit);
 
   return (
     <form
-      action={sendData}
+      action={formAction}
+      noValidate
       className="max-w-md mx-auto p-4 bg-white shadow-md rounded"
     >
       <div className="mb-4">
@@ -26,8 +21,13 @@ async function Newsletter() {
           type="text"
           id="name"
           name="name"
+          defaultValue={state?.name}
           className="w-full px-3 py-2 border border-gray-300 rounded"
+          required
         />
+        <p className="bg-red-100 text-red-950">
+          {state?.errors && state.errors.name}
+        </p>
       </div>
       <div className="mb-4">
         <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
@@ -37,15 +37,16 @@ async function Newsletter() {
           type="email"
           id="email"
           name="email"
+          defaultValue={state?.email}
           className="w-full px-3 py-2 border border-gray-300 rounded"
+          required
         />
+        <p className="bg-red-100 text-red-950">
+          {state?.errors && state.errors.email}
+        </p>
       </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-      >
-        Subscribe
-      </button>
+      <SubmitButton />
+      <p>{state?.message}</p>
     </form>
   );
 }

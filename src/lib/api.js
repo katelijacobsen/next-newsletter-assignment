@@ -11,11 +11,8 @@ async function apiFetch(url, options = {}) {
 
 export async function getSubs() {
   return apiFetch(`${endpoint}?order=id.desc`, {
-    method: "GET",
+    // method: "GET",
     headers: {
-      Prefer: "return=representation",
-      Accept: "application/json",
-      "Content-Type": "application/json",
       apikey: supabaseKey,
     },
   });

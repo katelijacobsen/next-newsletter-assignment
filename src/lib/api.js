@@ -14,6 +14,8 @@ export async function getSubs() {
     method: "GET",
     headers: {
       Prefer: "return=representation",
+      Accept: "application/json",
+      "Content-Type": "application/json",
       apikey: supabaseKey,
     },
   });

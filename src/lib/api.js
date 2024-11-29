@@ -11,7 +11,7 @@ async function apiFetch(url, options = {}) {
 
 export async function getSubs() {
   return apiFetch(`${endpoint}?order=id.desc`, {
-    // method: "GET",
+    method: "GET",
     headers: {
       apikey: supabaseKey,
     },

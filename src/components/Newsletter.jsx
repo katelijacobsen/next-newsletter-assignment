@@ -10,6 +10,7 @@ function Newsletter() {
   return (
     <form
       action={formAction}
+      noValidate
       className="max-w-md mx-auto p-4 bg-white shadow-md rounded"
     >
       <div className="mb-4">
@@ -22,6 +23,7 @@ function Newsletter() {
           name="name"
           defaultValue={state?.name}
           className="w-full px-3 py-2 border border-gray-300 rounded"
+          required
         />
         <p className="bg-red-100 text-red-950">
           {state?.errors && state.errors.name}
@@ -37,16 +39,14 @@ function Newsletter() {
           name="email"
           defaultValue={state?.email}
           className="w-full px-3 py-2 border border-gray-300 rounded"
+          required
         />
         <p className="bg-red-100 text-red-950">
           {state?.errors && state.errors.email}
         </p>
       </div>
       <SubmitButton />
-      <p>{state?.success && state.success.message}</p>
-      {state?.errors && state.errors.submit && (
-        <p className="text-red-500 text-sm mt-2">{state.errors.submit}</p>
-      )}
+      <p>{state?.message}</p>
     </form>
   );
 }

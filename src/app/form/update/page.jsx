@@ -1,24 +1,15 @@
-"use client";
-
 import { redirect } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-async function page() {
-  //   const { number } = await searchParams;
-  const params = await useSearchParams();
 
-  const num = params.get("number");
+async function page({ searchParams }) {
+  const { number } = await searchParams;
 
   async function handleSubmit(formData) {
     "use server";
 
-    const fields = [];
-
-    Array.from({ length: number }).forEach((_, i) => {
-      fields.push({
-        name: formData.get(`name-${i}`),
-        email: formData.get(`email-${i}`),
-      });
-    });
+    const fields = Array.from({ length: number }).map((_, i) => ({
+      name: formData.get(`name-${i}`),
+      email: formData.get(`email-${i}`),
+    }));
 
     console.log(fields);
 

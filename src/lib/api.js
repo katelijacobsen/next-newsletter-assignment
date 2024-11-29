@@ -13,6 +13,7 @@ export async function getSubs() {
   return apiFetch(`${endpoint}?order=id.desc`, {
     method: "GET",
     headers: {
+      Prefer: "return=representation",
       apikey: supabaseKey,
     },
   });
